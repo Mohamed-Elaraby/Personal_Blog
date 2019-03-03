@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Carbon - Admin Template</title>
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="vendor/font-awesome/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="csstyles.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/simple-line-icons/css/simple-line-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/font-awesome/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/styles.css') }}">
 </head>
 <body class="sidebar-fixed header-fixed">
 <div class="page-wrapper">
-
     @include('includes.admin.header_navigation')
+
     <div class="main-container">
-        @include('includes.admin.sidebar_navigation')
+    @include('includes.admin.sidebar')
+
         <div class="content">
             @yield('content')
         </div>
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/chart.js/chart.min.js"></script>
-<script src="jsarbon.js"></script>
-<script src="jsemo.js"></script>
+<script src="{{ asset('admin/assets/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('admin/assets/vendor/popper.js/popper.min.js') }}"></script>
+<script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/assets/vendor/chart.js/chart.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/carbon.js') }}"></script>
+<script src="{{ asset('admin/assets/js/demo.js') }}"></script>
 </body>
 </html>
