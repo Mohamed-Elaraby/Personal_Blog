@@ -8289,7 +8289,7 @@ module.exports = function(Chart) {
 		ctx.font = helpers.fontString(bodyFontSize, model._bodyFontStyle, model._bodyFontFamily);
 		helpers.each(model.beforeBody.concat(model.afterBody), maxLineWidth);
 
-		// Body lines may include some extra width due to the color box
+		// Body lines may includes some extra width due to the color box
 		widthPadding = model.displayColors ? (bodyFontSize + 2) : 0;
 		helpers.each(body, function(bodyItem) {
 			helpers.each(bodyItem.before, maxLineWidth);
@@ -13717,7 +13717,7 @@ function generate(min, max, capacity, options) {
 	first = first.startOf(weekday ? 'day' : minor);
 	last = last.startOf(weekday ? 'day' : minor);
 
-	// Make sure that the last tick include max
+	// Make sure that the last tick includes max
 	if (last < max) {
 		last.add(1, minor);
 	}
@@ -13856,7 +13856,7 @@ module.exports = function(Chart) {
 	var TimeScale = Chart.Scale.extend({
 		initialize: function() {
 			if (!moment) {
-				throw new Error('Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale. Download at https://momentjs.com');
+				throw new Error('Chart.js - Moment.js could not be found! You must includes it before Chart.js to use the time scale. Download at https://momentjs.com');
 			}
 
 			this.mergeTicksOptions();

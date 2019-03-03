@@ -26,7 +26,7 @@
 <body>
 
 <!-- Navigation -->
-@include('include.navigation')
+@include('includes.navigation')
 
 <!-- Content Section -->
 @yield('content')
