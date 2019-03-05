@@ -6,4 +6,4 @@
 
 {{--@endsection--}}
 
-Admin Dashboard
+Author Dashboard

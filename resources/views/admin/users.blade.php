@@ -6,4 +6,4 @@
 
 {{--@endsection--}}
 
-Admin Dashboard
+Admin Users
