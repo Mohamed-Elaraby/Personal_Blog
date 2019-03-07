@@ -1,9 +1,7 @@
-{{--@extends('')--}}
+@extends('layouts.admin')
 
-{{--@section('title', '')--}}
+@section('title', 'Dashboard')
 
-{{--@section('content')--}}
-
-{{--@endsection--}}
-
-Author Dashboard
+@section('content')
+    Author Dashboard
+@endsection

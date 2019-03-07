@@ -1,9 +1,8 @@
-{{--@extends('')--}}
+@extends('layouts.admin')
 
-{{--@section('title', '')--}}
+@section('title', 'Users')
 
-{{--@section('content')--}}
+@section('content')
+    Admin
+@endsection
 
-{{--@endsection--}}
-
-Admin Users

@@ -3,8 +3,9 @@
         <i class="fa fa-bars"></i>
     </a>
 
-    <a class="navbar-brand" href="#">
-        <img src="{{ asset('admin/assets/imgs/logo.png') }}" alt="logo">
+    <a class="navbar-brand" href="/">
+        {{--<img src="{{ asset('admin/assets/imgs/logo.png') }}" alt="logo">--}}
+        <p><strong>P</strong>ersonal <strong>B</strong>log</p>
     </a>
 
     <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
@@ -12,6 +13,9 @@
     </a>
 
     <ul class="navbar-nav ml-auto">
+
+        {{-- Notifications Icon--}}
+
         {{--<li class="nav-item d-md-down-none">--}}
             {{--<a href="#">--}}
                 {{--<i class="fa fa-bell"></i>--}}
@@ -34,7 +38,7 @@
 
             <div class="dropdown-menu dropdown-menu-right">
 
-                <a href="#" class="dropdown-item">
+                <a href="{{ route('user.profile') }}" class="dropdown-item">
                     <i class="fa fa-user"></i> Profile
                 </a>
 

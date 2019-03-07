@@ -34,7 +34,9 @@
                 <h2>Comments</h2>
                 <hr>
                 @foreach($post->comments as $comments)
-                    <li>{{ $comments->content }} <hr> </li>
+                    <li>{{ $comments->content }}  </li>
+                    <p><small>By {{ $post->user->name }} On {{ \Carbon\Carbon::parse($comments->created_at)->diffForHumans() }}</small></p>
+                    <hr>
                 @endforeach
             </div>
         </div>

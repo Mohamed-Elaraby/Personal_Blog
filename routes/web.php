@@ -28,6 +28,9 @@ Route::prefix('user')->name('user.')->group(function (){
 
     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
     Route::get('comments', 'UserController@comments')->name('comments');
+    Route::delete('commentDelete/{id}', 'UserController@commentDelete')->name('commentDelete');
+    Route::get('profile', 'UserController@profile')->name('profile');
+    Route::post('editProfile/{id}', 'UserController@editProfile')->name('editProfile');
 
 });
 
