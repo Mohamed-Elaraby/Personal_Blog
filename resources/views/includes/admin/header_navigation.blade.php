@@ -29,7 +29,7 @@
                 {{--<span class="badge badge-pill badge-danger">5</span>--}}
             {{--</a>--}}
         {{--</li>--}}
-
+        <a href="{{ route('author.createPost') }}" class="btn btn-primary float-right">new post</a>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="{{ asset('admin/assets/imgs/avatar-1.png') }}" class="avatar avatar-sm" alt="logo">

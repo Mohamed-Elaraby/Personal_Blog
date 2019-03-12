@@ -15,6 +15,7 @@ class PostsTableSeeder extends Seeder
     {
         for ($i = 0;$i < 5; $i++){
             Post::create([
+                'title' => 'Title Post ',
                 'content' => 'Post Content  Number '.rand(1,5),
                 'user_id' => 1,
             ]);

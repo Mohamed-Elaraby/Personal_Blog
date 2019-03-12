@@ -13,7 +13,7 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0;$i < 5; $i++){
+        for ($i = 0;$i < 10; $i++){
             Comment::create([
                 'content' => 'Comment Number '.rand(20,50),
                 'user_id' => 1,

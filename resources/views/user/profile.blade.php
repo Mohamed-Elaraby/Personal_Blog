@@ -12,14 +12,19 @@
                             Account Settings
                         </div>
                         <div class="errors_show">
+
+                            @if(Session::has('error'))
+                                <li class="alert alert-danger">{{ session::get('error') }}</li>
+                            @endif
+
+                            @if(Session::has('success'))
+                                <li class="alert alert-success">{{ session::get('success') }}</li>
+                            @endif
+
                             @if($errors->any())
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li class="alert alert-danger">
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                @foreach($errors->all() as $error)
+                                    <li class="alert alert-danger">{{ $error }}</li>
+                                @endforeach
                             @endif
                         </div>
                         <form action="{{ route('user.editProfile', Auth::user()->id) }}" method="post">
@@ -74,14 +79,14 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">New Password</label>
-                                                    <input type="password" name="newPassword" class="form-control">
+                                                    <input type="password" name="new_password" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">New Password Confirmation</label>
-                                                    <input type="password" name="newPasswordConformation" class="form-control">
+                                                    <input type="password" name="new_password_confirmation" class="form-control">
                                                 </div>
                                             </div>
                                         </div>

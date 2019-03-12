@@ -9,12 +9,12 @@
                 <div class="card p-4">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="h4 d-block font-weight-normal mb-2">{{ Auth::user()->comments->count() }}</span>
-                            <span class="font-weight-light">Comments</span>
+                            <span class="h4 d-block font-weight-normal mb-2">{{ $comments->count() }}</span>
+                            <span class="font-weight-light">Total Comments</span>
                         </div>
 
                         <div class="h2 text-muted">
-                            <i class="icon icon-cloud-download"></i>
+                            <i class="icon icon-book-open"></i>
                         </div>
                     </div>
                 </div>
@@ -24,12 +24,12 @@
                 <div class="card p-4">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="h4 d-block font-weight-normal mb-2">{{ Auth::user()->comments->unique('post_id')->count() }}</span>
+                            <span class="h4 d-block font-weight-normal mb-2">{{ $comments->unique('post_id')->count() }}</span>
                             <span class="font-weight-light">Commented Of Posts</span>
                         </div>
 
                         <div class="h2 text-muted">
-                            <i class="icon icon-clock"></i>
+                            <i class="icon icon-paper-clip"></i>
                         </div>
                     </div>
                 </div>

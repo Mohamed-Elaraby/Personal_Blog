@@ -28,6 +28,7 @@ class CreateCommentsTable extends Migration
                 ->on('posts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
