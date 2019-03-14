@@ -19,7 +19,7 @@
                             @endforeach
                         @endif
                     </div>
-                    <form action="{{ route('admin.deletePost') }}" method="post">
+                    <form action="{{ route('admin.deleteComment') }}" method="post">
                         @csrf
                         @method('DELETE')
                         <div class="card-body">
@@ -51,7 +51,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                            <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure delete it?')">Delete</button>
                         </div>
                     </form>
                 </div>

@@ -16,9 +16,6 @@ class PublicController extends Controller
     public function singlePost ($id)
     {
         $post = Post::findOrFail($id);
-
-
-
         return view('singlePost', compact('post'));
     }
 

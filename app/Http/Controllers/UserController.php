@@ -2,25 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DashboardChart;
 use App\Comment;
 use App\Http\Requests\editProfile;
 use App\User;
 use Auth;
 use App\Http\Requests\deleteRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function dashboard ()
 
     {
+
         $comments = Comment::where('user_id', Auth::user()->id)->get();
-        return view('user.dashboard', compact('comments'));
-//        dump($comments);
+
+        // start Chart
+        $chart = new DashboardChart ;
+        $days = $this->genarateDataRange(Carbon::now()->subDays(30), Carbon::now());
+
+        $chartComments = [];
+
+
+        foreach ($days as $day){
+            $chartComments [] = Comment::whereDate('created_at', $day)->where('user_id', Auth::user()->id)->count();
+        }
+
+        $chart->labels($days);
+        $chart->dataset('comments', 'line', $chartComments);
+        // end Chart
+        return view('user.dashboard', compact('comments', 'chart'));
+
     }
 
+    
+    private function genarateDataRange (Carbon $start_date, Carbon $end_date)
+    {
+        $dates = [];
+
+        for ($date = $start_date; $date->lte($end_date); $date->addDay()){
+            $dates[] = $date->format('Y-m-d');
+        }
+
+        return $dates;
+
+    }
+    
     public function comments ()
 
     {
@@ -29,6 +65,19 @@ class UserController extends Controller
         $comments = Comment::where('user_id', Auth::user()->id)->with('post')->paginate(5);
         $trashedComments = Comment::onlyTrashed()->get();
         return view('user.comments', compact('comments', 'trashedComments'));
+    }
+
+    public function newComment (Request $request)
+    {
+
+        $request->validate(['comment' => 'required|string']);
+        $comment = new Comment ;
+        $comment->content = $request->comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->post_id = $request->post_id;
+        $comment->save();
+
+        return back();
     }
 
     public function commentDelete (deleteRequest $request)

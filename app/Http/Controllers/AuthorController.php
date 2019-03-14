@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DashboardChart;
 use App\Comment;
 use App\Http\Requests\createPost;
 use App\Http\Requests\deleteRequest;
@@ -16,24 +17,50 @@ class AuthorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('CheckRole:author');
+        $this->middleware(['CheckRole:author','auth']);
     }
 
     public function dashboard ()
     {
+
         $allPosts = Post::all();
         $postsToday = Post::find(Auth::user()->id)->whereDate('created_at',Carbon::today())->get();
-
         $allComments = Comment::all();
         $commentsToday = Comment::find(Auth::user()->id)->whereDate('created_at',Carbon::today())->get();
 
-        return view('author.dashboard', compact('allPosts', 'postsToday' ,'allComments', 'commentsToday'));
+        // start Chart
+        $chart = new DashboardChart;
+
+        $days = $this->generateDateRange(Carbon::now()->subDays(30), Carbon::now());
+        $postsChart = [];
+
+        foreach ($days as $day){
+            $postsChart [] = Post::whereDate('created_at', $day)->where('user_id', Auth::user()->id)->count();
+        }
+
+
+        $chart->labels($days);
+        $chart->dataset('posts', 'line', $postsChart);
+        // end Chart
+        return view('author.dashboard', compact('allPosts', 'postsToday' ,'allComments', 'commentsToday', 'chart'));
     }
+
+
+    private function generateDateRange (Carbon $startDate, Carbon $endDate)
+    {
+        $dates = [];
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()){
+            $dates [] = $date->format('Y-m-d');
+//            $dates[] = Post::whereDate('created_at', $date)->where('user_id', Auth::user()->id)->count();
+        }
+        return $dates ;
+    }
+
 
     public function posts ()
     {
 
-        $posts = Post::where('user_id', Auth::user()->id)->paginate(5);
+        $posts = Post::where('user_id', Auth::user()->id)->orderBy('id','desc')->paginate(5);
 
         return view('author.posts', compact('posts'));
     }
@@ -93,7 +120,7 @@ class AuthorController extends Controller
     public function comments ()
     {
         $postsIds = Post::where(['user_id' => Auth::user()->id, 'deleted_at' => NULL])->pluck('id')->toArray();
-        $comments = Comment::whereIn('post_id', $postsIds)->paginate(5);
+        $comments = Comment::whereIn('post_id', $postsIds)->orderBy('id','desc')->paginate(5);
         $trashedComments = Comment::onlyTrashed()->get();
         return view('author.comments', compact('comments', 'trashedComments'));
     }

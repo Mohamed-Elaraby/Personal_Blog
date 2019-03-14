@@ -67,7 +67,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                            <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure delete it?')">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -77,5 +77,7 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 

@@ -30,7 +30,7 @@
 
             </div>
             <hr>
-            <div class="comments">
+            <div class="comments_area">
                 <h2>Comments</h2>
                 <hr>
                 @foreach($post->comments as $comments)
@@ -39,6 +39,30 @@
                     <hr>
                 @endforeach
             </div>
+            @if(Auth::check())
+                <div class="add_comment">
+                    <div class="errors">
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger">
+                                    <li>{{ $error }}</li>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <form action="{{ route('user.newComment') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            <label for="comment">Leave a comment</label>
+                            <textarea name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="new Comment" class="btn btn-success">
+                        </div>
+                    </form>
+                </div>
+            @endif
         </div>
     </article>
 
